@@ -120,7 +120,7 @@ client.on('message', message => {
         message.channel.send(sayE);
     }
 });
-lient.on('message',async message => {
+client.on('message',async message => {
     const moment = require('moment');
 const ms = require('ms')
     var prefix = 'y!' //بريفكس البوت
