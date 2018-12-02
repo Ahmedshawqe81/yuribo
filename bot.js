@@ -100,42 +100,29 @@ client.on('message', message => {
     }) 
     }  
     }) 
-
-const mmss = require('ms');
-        client.on('message', async message => {
-            let muteReason = message.content.split(" ").slice(3).join(" ");
-            let mutePerson = message.mentions.users.first();
-            let messageArray = message.content.split(" ");
-            let muteRole = message.guild.roles.find("name", "Muted");
-            let time = messageArray[2];
-            if(message.content.startsWith(prefix + "tempmute")) {
-                if(!message.member.hasPermission('MUTE_MEMBERS')) return message.channel.send('**Sorry But You Dont Have Permission** `MUTE_MEMBERS`' );
-                if(!mutePerson) return message.channel.send('**منشن شخص**')
-                if(mutePerson === message.author) return message.channel.send('**لاتستطيع اعطاء ميوت لنفسك**');
-                if(mutePerson === client.user) return message.channel.send('**لاتستطيع اعطاء البوت ميوت**');
-                if(message.guild.member(mutePerson).roles.has(muteRole.id)) return message.channel.send('**This Person Already Tempmuted !**');
-                if(!muteRole) return message.guild.createRole({ name: "Muted", permissions: [] });
-                if(!time) return message.channel.send("**Type The Duration**");
-                if(!time.match(/[1-60][s,m,h,d,w]/g)) return message.channel.send('**The Bot Not Support This Time**');
-                if(!muteReason) return message.channel.send('**اكتب السبب\\')
-                message.guild.member(mutePerson).addRole(muteRole);
-                message.channel.send(`**:white_check_mark: ${mutePerson} has been Muted ! :zipper_mouth: **`)
-                message.delete()
-                let muteEmbed = new Discord.RichEmbed()
-                .setTitle(`New Temp Muted User`)
-                .setThumbnail(message.guild.iconURL)
-                .addField('• Muted By:',message.author,true)
-                .addField('• Muted User:', `${mutePerson}`)
-                .addField('• Reason:',muteReason,true)
-                .addField('• Duration:',`${mmss(mmss(time), {long: true})}`)
-                .setFooter(message.author.username,message.author.avatarURL);
-                let logchannel = message.guild.channels.find(`name`, "log");
-                if(!logchannel) return message.channel.send("Can't find log channel.");
-                logchannel.sendEmbed(muteEmbed)
-                mutePerson.send(`**You Are has been muted in ${message.guild.name} • Reason: ${muteReason}**`)
-                .then(() => { setTimeout(() => {
-                   message.guild.member(mutePerson).removeRole(muteRole);
-               }, mmss(time));
-            });
-            }
+client.on('message',async message => {
+  if(message.author.bot || message.channel.type === 'y!b') return;
+  let args = message.content.split(' ');
+  if(args[0] === `*bc`) {
+    if(!message.member.hasPermission("MANAGE_GUILD")) return message.channel.send('- **أنت لا تملك الصلاحيات اللازمة لأستخدام هذا الأمر**');
+    if(!args[1]) return message.channel.send('- **يجب عليك كتابة الرسالة بعد الأمر**');
+  
+    let msgCount = 0;
+    let errorCount = 0;
+    let successCount = 0;
+    message.channel.send(`**- [ :bookmark: :: ${msgCount} ] ・عدد الرسائل المرسلة**\n**- [ :inbox_tray: :: ${successCount} ] ・عدد الرسائل المستلمة**\n**- [ :outbox_tray: :: ${errorCount} ]・عدد الرسائل الغير مستلمة**`).then(msg => {
+      message.guild.members.forEach(g => {
+        g.send(args.slice(1).join(' ')).then(() => {
+          successCount++;
+          msgCount++;
+          msg.edit(`**- [ :bookmark: :: ${msgCount} ] ・عدد الرسائل المرسلة**\n**- [ :inbox_tray: :: ${successCount} ] ・عدد الرسائل المستلمة**\n**- [ :outbox_tray: :: ${errorCount} ]・عدد الرسائل الغير مستلمة**`);
+        }).catch(e => {
+          errorCount++;
+          msgCount++;
+          msg.edit(`**- [ :bookmark: :: ${msgCount} ] ・عدد الرسائل المرسلة**\n**- [ :inbox_tray: :: ${successCount} ] ・عدد الرسائل المستلمة**\n**- [ :outbox_tray: :: ${errorCount} ]・عدد الرسائل الغير مستلمة**`);
         });
+      });
+    });
+  }
+});
+ 
