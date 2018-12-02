@@ -29,7 +29,7 @@ client.on('message', function(message) {
         if(!messageReason) return message.reply("**منشن لـ الشخص الذي تريد التبليغ عنه**");
       .addField("**y!report @Nekomare #7145 ..**",mUser,true)
     let mUser = message.mentions.users.first();
-    if(!mUser) return message.channel.send("Couldn't find user.");
+    if(!mUser) return message.channel.send("لا يمكن وجود الشخص ، من فضلك قم بألتأكد من المنشن بشكل صحيح .");
     let Rembed = new Discord.RichEmbed()
     .setTitle("`New Report!`")
     .setThumbnail(message.author.avatarURL)
