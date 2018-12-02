@@ -23,90 +23,38 @@ client.user.setGame(``,'https://www.twitch.tv/tarikrs');                        
 });          
 
 client.on('message', message => {
-    if (message.content.startsWith("رابط")) {
-        
-  message.channel.createInvite({
-        thing: true,
-        maxUses: 5,
-        maxAge: 86400
-    }).then(invite =>  
-      message.author.sendMessage(invite.url)
-    )
-    const embed = new Discord.RichEmbed()
-        .setColor("2fff00")
-        .setDescription("| ✅  | ❤  تم ارسال الرابط على الخاص  ")
-        .setFooter("Spring-Team")
-      message.channel.sendEmbed(embed).then(message => {message.delete(10000)})
-              const Embed11 = new Discord.RichEmbed()
-        .setColor("2fff00")
-        .setDescription(`
-**-------------------
--هذا هو الرابط 
--ارسله للي تحب وحيآك انت وياه
--ونورنا ياجميل :heart: 
-------------------- **`)
-        .setFooter("By:shyboy_05")
-      message.author.sendEmbed(Embed11)
-    }
+	var prefix = "y!"
+  if (message.author.x5bz) return;
+  if (!message.content.startsWith(prefix)) return;
+
+  let command = message.content.split(" ")[0];
+  command = command.slice(prefix.length);
+
+  let args = message.content.split(" ").slice(1);
+
+  if (command == "kick") {
+               if(!message.channel.guild) return message.reply('** This command only for servers**');
+         
+  if(!message.guild.member(message.author).hasPermission("KICK_MEMBERS")) return message.reply("**You Don't Have ` KICK_MEMBERS ` Permission**");
+  if(!message.guild.member(client.user).hasPermission("KICK_MEMBERS")) return message.reply("**I Don't Have ` KICK_MEMBERS ` Permission**");
+  let user = message.mentions.users.first();
+  let reason = message.content.split(" ").slice(2).join(" ");
+  if (message.mentions.users.size < 1) return message.reply("**ظ…ظ†ط´ظ† ط´ط®طµ**");
+  if(!reason) return message.reply ("**ط§ظƒطھط¨ ط³ط¨ط¨ ط§ظ„ط·ط±ط¯**");
+  if (!message.guild.member(user)
+  .kickable) return message.reply("**ظ„ط§ظٹظ…ظƒظ†ظ†ظٹ ط·ط±ط¯ ط´ط®طµ ط§ط¹ظ„ظ‰ ظ…ظ† ط±طھط¨طھظٹ ظٹط±ط¬ظ‡ ط§ط¹ط·ط§ط، ط§ظ„ط¨ظˆطھ ط±طھط¨ظ‡ ط¹ط§ظ„ظٹ**");
+
+  message.guild.member(user).kick();
+
+  const kickembed = new Discord.RichEmbed()
+  .setAuthor(`KICKED!`, user.displayAvatarURL)
+  .setColor("RANDOM")
+  .setTimestamp()
+  .addField("**User:**",  '**[ ' + `${user.tag}` + ' ]**')
+  .addField("**By:**", '**[ ' + `${message.author.tag}` + ' ]**')
+  .addField("**Reason:**", '**[ ' + `${reason}` + ' ]**')
+  message.channel.send({
+    embed : kickembed
+  })
+}
 });
-client.on('message', message => {
-            if (message.content.startsWith("اوامر")) {
-     let embed = new Discord.RichEmbed()
-.setThumbnail(message.author.avatarURL)
-.addField('رابط | للحصول علي رابط دعوه لـ السيرفر')
-.addField('رابط | للحصول علي رابط دعوه لـ السيرفر')
-.addField('افتار | لرؤيه الصورة الخاصه بك او بشخص أخر')
-.addField('     ثالثا ' ,' لا تزعج الاخرين ')
-.addField('    رابعا' ,' ممنوع الاعلانات ')
-.addField('    خامسا' ,' احترم الاخرين ')
-.addField('    سادسا' ,' لا تنشر في الشات او بل خاص ')//Mal_Team
-.addField('    سابعا' ,' لا تنشر روابط! ')
-.addField('    ثامنا' ,' لا تسوي سبام ايموجي ')
-.addField('    تاسعا' ,' لا تطلب رتبه الاداره ! ')
-.setColor('#7d2dbe')
-  message.channel.sendEmbed(embed);//Mal_Team
-    }
-});
-client.on('message', message => {
-    if (message.content.startsWith("افتار")) {
-        var mentionned = message.mentions.users.first();
-    var x5bzm;
-      if(mentionned){
-          var x5bzm = mentionned;
-      } else {
-          var x5bzm = message.author;
-          
-      }
-        const embed = new Discord.RichEmbed()
-        .setColor("RANDOM")
-        .setImage(`${x5bzm.avatarURL}`)
-      message.channel.sendEmbed(embed);
-    }
-});
-Malicious™ © :arrow_down:
-client.on('message', message => {
-                           if(!message.channel.guild) return;
-               let args = message.content.split(' ').slice(1).join(' ');
-               if (message.content.startsWith('.abc')){
-                if (message.author.id !== '518484338707529728') return message.reply('** هذا الأمر قفط لصاحب البوت و شكراًً **')
-               message.channel.sendMessage('جار ارسال الرسالة |✅')
-               client.users.forEach(m =>{
-               m.sendMessage(args)
-               })
-               }
-               });
-client.on('message', message => {
-                           if (message.content.startsWith("معلومات البوت")) {
-                    let embed = new Discord.RichEmbed()
-               .setThumbnail(message.author.avatarURL)
-               .addField(' السيرفرات🌐',`[${client.guilds.size}]  `)
-               .addField('**عدد المستخدمين 👥 **' , `${client.users.size}`, true)
-               .addField('الرومات📚 ',`[${client.channels.size}]`)
-               .addField(' البنق🚀 ',`[${Date.now() - message.createdTimestamp}]`)
-           .addField('**سرعة الاتصال📡**' , `${Date.now() - message.createdTimestamp}` + ' ms')
-               .addField('**استخدام المعالج💿**', `${(process.cpuUsage().rss / 10000).toFixed()}%`, true) 
-               .addField(`G A | ● ØF ●`)
-               .setColor('#7d2dbe')
-                 message.channel.sendEmbed(embed);
-                   }
-               });
