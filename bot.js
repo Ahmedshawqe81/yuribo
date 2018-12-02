@@ -50,7 +50,7 @@ client.on('message', message => {
     }
 });
 client.on('message', message => {
-            if (message.content.startsWith("y!rules")) {
+            if (message.content.startsWith("اوامر")) {
      let embed = new Discord.RichEmbed()
 .setThumbnail(message.author.avatarURL)
 .addField('رابط | للحصول علي رابط دعوه لـ السيرفر')
