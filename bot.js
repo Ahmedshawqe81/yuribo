@@ -26,7 +26,8 @@ client.on('message', function(message) {
     if(message.content.startsWith(prefix + "report")) {
         let messageArgs = message.content.split(" ").slice(1).join(" ");
         let messageReason = message.content.split(" ").slice(2).join(" ");
-        if(!messageReason) return message.reply("**# Specify a reason!**");
+        if(!messageReason) return message.reply("**منشن لـ الشخص الذي تريد التبليغ عنه**");
+      .addField("**y!report @Nekomare #7145 ..**",mUser,true)
     let mUser = message.mentions.users.first();
     if(!mUser) return message.channel.send("Couldn't find user.");
     let Rembed = new Discord.RichEmbed()
