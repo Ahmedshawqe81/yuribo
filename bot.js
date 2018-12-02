@@ -26,10 +26,9 @@ client.on('message', function(message) {
     if(message.content.startsWith(prefix + "report")) {
         let messageArgs = message.content.split(" ").slice(1).join(" ");
         let messageReason = message.content.split(" ").slice(2).join(" ");
-        if(!messageReason) return message.reply("**منشن لـ الشخص الذي تريد التبليغ عنه**");
-      .addField("**y!report @Nekomare #7145 ..**",mUser,true)
+        if(!messageReason) return message.reply("**# حدد الشخص الذي تريد البلاغ عنه و بعدها قم بكتابه السبب**");
     let mUser = message.mentions.users.first();
-    if(!mUser) return message.channel.send("لا يمكن وجود الشخص ، من فضلك قم بألتأكد من المنشن بشكل صحيح .");
+    if(!mUser) return message.channel.send("لا يمكنني وجود الشخص المراد البلاغ عنه.");
     let Rembed = new Discord.RichEmbed()
     .setTitle("`New Report!`")
     .setThumbnail(message.author.avatarURL)
