@@ -23,7 +23,7 @@ client.user.setGame(``,'https://www.twitch.tv/tarikrs');                        
 });          
 
 client.on('message', message => {
-    var prefix = "$";
+    var prefix = "y!";
   if (message.author.x5bz) return;
   if (!message.content.startsWith(prefix)) return;
  
