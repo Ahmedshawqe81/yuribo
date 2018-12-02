@@ -100,18 +100,6 @@ client.on('message', message => {
     }) 
     }  
     }) 
-client.on('message', async msg => {
-      client.snek = require('snekfetch');
-    var p = "y!"
-  if(msg.content.startsWith(p + "s")) {
-   let args = msg.content.split(' ').slice(1).join(' ');
-  if(!args) return args.missing(msg, 'لم يتم اضافة اي كلام', this.help);
-  msg.channel.startTyping();
-  const searchMessage = await msg.channel.send('Painting...');
-  const { body } = await client.snek.get(`https://nekobot.xyz/api/imagegen?type=clyde&text=${encodeURIComponent(args)}`);
-  msg.channel.send({file: { attachment:body.message, name: 'clyde.png'}}).then(()=> { searchMessage.delete(); msg.channel.stopTyping(); });
-};
-});
        var prefix = "y!";
     client.on('message', message => {
   if (message.author.bot) return;
