@@ -168,7 +168,7 @@ hours = 12;
             if(!collected.first().content.match(/[1-60][s,m,h,d,w]/g)) return message.channel.send('**البوت لا يدعم هذا الوقت**');
             duration = collected.first().content
             collected.first().delete();
-            msg.edit(':eight_pointed_black_star:| **يتم الارسال الى الروم الان **').then(msg => {
+            msg.edit(':eight_pointed_black_star:| **ارسل جائزه القيف اواي**').then(msg => {
               message.channel.awaitMessages(filter, {
                 max: 1,
                 time: 20000,
