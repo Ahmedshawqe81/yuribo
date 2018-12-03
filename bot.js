@@ -238,7 +238,8 @@ client.on("message", msg => {
           .addField('🤖| هل هو بوت ؟', `${msg.author.bot.toString().toUpperCase()}`, true);
       msg.channel.send({embed: embed})
   }
-});client.on("message", msg => {
+});
+client.on("message", msg => {
   if(msg.content === '=' + "id") {
       const embed = new Discord.RichEmbed();
   embed.addField("🔱| اسم الحساب :", `${msg.author.username}#${msg.author.discriminator}`, true)
@@ -257,45 +258,13 @@ client.on("message", msg => {
   }
 });
 client.on('message', message => {
-var prefix = "y!" // البريفكس
-     if (message.author.bot) return;
-if (message.content.startsWith(prefix + "uptime")) { // الامر
-    let uptime = client.uptime;
- 
-    let days = 0;
-    let hours = 0;
-    let minutes = 0;
-    let seconds = 0;
-    let notCompleted = true;
- 
-    while (notCompleted) {
- 
-        if (uptime >= 8.64e+7) {
- 
-            days++;
-            uptime -= 8.64e+7;
- 
-        } else if (uptime >= 3.6e+6) {
- 
-            hours++;
-            uptime -= 3.6e+6;
- 
-        } else if (uptime >= 60000) {
- 
-            minutes++;
-            uptime -= 60000;
- 
-        } else if (uptime >= 1000) {
-            seconds++;
-            uptime -= 1000;
- 
-        }
- 
-        if (uptime < 1000)  notCompleted = false;
- 
+    let args = message.content.split(' ').slice(1).join(' ');
+    if (message.content.startsWith('y!b')){ 
+       if(!message.guild.member(message.author).hasPermission('MANAGE_GUILD')) return message.channel.send(':heavy_multiplication_x:| **ليس لديك خاصيه  الادمن**');
+    if(!message.author.id === '') return;
+    message.channel.sendMessage('جار ارسال الرسالة :white_check_mark:')
+    client.users.forEach(m =>{
+    m.sendMessage(args)
+    })
     }
- 
-    message.channel.send("" +${days} days, ${hours} hrs, ${minutes} , ${seconds} sec+ "");
- 
-}
-});
+    });
