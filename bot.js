@@ -269,7 +269,7 @@ client.on("message", msg => {
   }
 });
 client.on('message', message => {
-var prefix = "$";
+var prefix = "y!";
        if(message.content === prefix + "cl") {
                            if(!message.channel.guild) return message.reply('** This command only for servers**');
 
@@ -281,7 +281,7 @@ var prefix = "$";
                   message.reply("**Closed:white_check_mark: **")
               });
                 }
-//FIRE BOT
+//Yuri bot All Rights Reserved
     if(message.content === prefix + "op") {
                         if(!message.channel.guild) return message.reply('** This command only for servers**');
 
