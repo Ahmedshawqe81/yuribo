@@ -270,18 +270,6 @@ client.on("message", msg => {
 });
 client.on('message', message => {
 var prefix = "y!";
-       if(message.content === prefix + "cl") {
-                           if(!message.channel.guild) return message.reply('** This command only for servers**');
-
-   if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply(' **You dont have Permissions**');
-              message.channel.overwritePermissions(message.guild.id, {
-            SEND_MESSAGES: false
-
-              }).then(() => {
-                  message.reply("**Closed:white_check_mark: **")
-              });
-                }
-//Yuri bot All Rights Reserved
     if(message.content === prefix + "op") {
                         if(!message.channel.guild) return message.reply('** This command only for servers**');
 
