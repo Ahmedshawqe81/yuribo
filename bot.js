@@ -209,18 +209,6 @@ hours = 12;
     });
   }
 });
-client.on('message', message => {
-var prefix = "y!";
-      if(message.content === prefix + "hchannel") {
-      if(!message.channel.guild) return;
-      if(!message.member.hasPermission('ADMINISTRATOR')) return message.reply('You Dont Have Perms ❌');
-             message.channel.overwritePermissions(message.guild.id, {
-             READ_MESSAGES: false
- })
-              message.channel.send('Channel Hided Successfully ! ✅  ')
- }
-});
-
 
 client.on('message', message => {
               if (!message.channel.guild) return;
@@ -269,16 +257,28 @@ client.on("message", msg => {
   }
 });
 client.on('message', message => {
-var prefix = "y!";
+var prefix = "$";
+       if(message.content === prefix + "cl") {
+                           if(!message.channel.guild) return message.reply('** This command only for servers**');
+
+   if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply(' **You dont have Permissions **');
+              message.channel.overwritePermissions(message.guild.id, {
+            SEND_MESSAGES: false
+
+              }).then(() => {
+                  message.reply("**Done.:white_check_mark: **")
+              });
+                }
+//FIRE BOT
     if(message.content === prefix + "op") {
                         if(!message.channel.guild) return message.reply('** This command only for servers**');
 
-   if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply('**You dont have Permissions**');
+   if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply('**You dont have permissions**');
               message.channel.overwritePermissions(message.guild.id, {
             SEND_MESSAGES: true
 
               }).then(() => {
-                  message.reply("**Done:white_check_mark:**")
+                  message.reply("**Done..:white_check_mark:**")
               });
     }
        
