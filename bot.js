@@ -223,13 +223,13 @@ var prefix = "y!";
 
 
 client.on('message', message => {
-var prefix = "y!";
-      if(message.content === prefix + "schannel") {
-      if(!message.channel.guild) return;
-      if(!message.member.hasPermission('ADMINISTRATOR')) return message.reply('❌');
-             message.channel.overwritePermissions(message.guild.id, {
-             READ_MESSAGES: true
- })
-              message.channel.send('Done  ')
- }
-});
+              if (!message.channel.guild) return;
+      if(message.content =='y!count')
+      var IzRo = new Discord.RichEmbed()
+      .setThumbnail(message.author.avatarURL)
+      .setFooter(message.author.username, message.author.avatarURL)
+      .setTitle('🌷| Members info')
+      .addBlankField(true)
+      .addField('عدد اعضاء السيرفر',`${message.guild.memberCount}`)
+      message.channel.send(IzRo);
+    });
